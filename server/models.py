@@ -29,7 +29,7 @@ class Activity(db.Model, SerializerMixin):
     signups = db.relationship('Signup', back_populates = 'activity')
     
     # Add serialization rules
-    serializer_rules = ('-signups.activity',)
+    serializer_rules = ('-signups',)
     
     def __repr__(self):
         return f'<Activity {self.id}: {self.name}>'
@@ -47,7 +47,7 @@ class Camper(db.Model, SerializerMixin):
     signups = db.relationship('Signup', back_populates = 'camper')
     
     # Add serialization rules
-    serializer_rules = ('-signups.camper',)
+    serializer_rules = ('-signups',)
     
     # Add validation
     @validates('name')
@@ -82,7 +82,7 @@ class Signup(db.Model, SerializerMixin):
     
     # Add serialization rules
     
-    serializer_rules = ('-camper.signups', '-activity.signups')
+    serializer_rules = ('-camper', '-activity')
     
     # Add validation
     

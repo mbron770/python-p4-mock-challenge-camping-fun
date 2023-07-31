@@ -88,20 +88,20 @@ def activity_by_id(id):
     
 ###ask about this 
     
-# @app.route('/signups', methods = ['POST'])
-# def signups():
+@app.route('/signups', methods = ['POST'])
+def signups():
     
-#         data = request.json 
-#         signup = Signup(
-#         )
-#         try: 
-#             for attr in data: 
-#                 setattr(signup, attr, data[attr])
-#             db.session.add(signup)
-#             db.session.commit()
-#             return signup.to_dict(rules = ('-activity', '-camper')), 201
-#         except ValueError as ie: 
-#             return {'error': ie.args}, 422
+        data = request.json 
+        signup = Signup(
+        )
+        try: 
+            for attr in data: 
+                setattr(signup, attr, data[attr])
+            db.session.add(signup)
+            db.session.commit()
+            return signup.to_dict(rules = ('-activity.signups', '-camper.signups')), 201
+        except ValueError as ie: 
+            return {'error': ie.args}, 422
 
 # @app.post('/signups')
 # def post_signups():
